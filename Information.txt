@@ -1,0 +1,43 @@
+Process of Registration
+
+The biggest problem the companires make that when a user creates an account
+with a username and a password, they add it to the database. But when if the system is hacked 
+for some reason, everyone password is exposed to the world.
+
+For that we need Encryption for the password, the username is fine
+ using the Bcrypt package
+
+The disadvantage to that is when we Encrypt our password and then want to check 
+durign login from the database that if the password matches or not, it gets
+hard because these encryption is only one way , it cannot be decrypted , it could be 
+but there is a lot of technical baggage
+- Just what we can do is again a one way Encrypt of that password from that database to check
+
+Now we have put en encryption to our password using this code
+ const {username, password} = req.body
+    // we save the username and all with an irreversibly encrypted password
+
+    //encrypt the password 
+    const hashedPassword = bcrypt.hashSync(password, 8)
+
+    console.log(hashedPassword)
+    
+    res.sendStatus(201)
+
+Now we save this to our database.
+
+when we are putting this hashsed password in that database
+- point to remember is that when we are using a production level project 
+the database is a separate server entity.
+
+Note - Status ranging from 500 to 599 signifies that the server has broken
+down somewhere in the process.
+
+Authentication middleware must intercept the requests that is been sent between the ports
+
+- The Registration route, it creates a new user inside the users table
+
+- when we are checking for login ,we have to destructure the username and password
+so that we can compare the usename if it matches an entity in the database and to retreive the hashed 
+password and compare the same 
+

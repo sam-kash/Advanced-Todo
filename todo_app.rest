@@ -1,0 +1,20 @@
+### Get /
+GET http://localhost:5000
+
+### Resister to a user POST /AUTH/REGISTER
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username" : "bigass@gmail.com",
+    "password" : "Bigfi"
+}
+
+### LOGIN A USER POST /AUTH/LOGIN
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username" : "bigass@gmail.com",
+    "password" : "Bigfi"
+}
