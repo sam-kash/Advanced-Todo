@@ -7,7 +7,8 @@ const router = express.Router();
 // Get all Todos for all Logged in users
 
 router.get('/', (res,req) => {
-    
+    const getTodos = db.prepare('SELCET * from todos where usee_id = ?')
+    const todos = getTodos.all(req.userId)
 })
 
 //Cretae a new Todo

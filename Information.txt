@@ -41,3 +41,7 @@ Authentication middleware must intercept the requests that is been sent between 
 so that we can compare the usename if it matches an entity in the database and to retreive the hashed 
 password and compare the same 
 
+
+next() - function allows it to hit to the endPoint
+
+

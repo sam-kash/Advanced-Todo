@@ -5,6 +5,7 @@ import { execArgv } from 'process'
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/todoRoutes.js' 
+import authMiddleware from './middleware/authMiddleware.js'
 
 const app = express()
 const PORT = process.env.PORT || 5000 // JUst checks if there is a port environment variable , if it is there then it uses that
@@ -19,7 +20,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 //Acting as middleware
-app.use(express.json())
+app.use(express.json()) 
 
 //Servers the html file from the /public directory
 //Tell express to server all files from the public folder as static assets / files
@@ -32,7 +33,7 @@ app.get('/' , (req,res) => {
 
 //routes
 app.use('/auth' , authRoutes)
-app.use('/todos' , todoRoutes)
+app.use('/todos' ,authMiddleware, todoRoutes)
 
 
 app.listen(PORT, () => {
